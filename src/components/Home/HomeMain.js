@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import HomeHeader from './HomeHeader';
+import HomeHeader from './Navigation/Header';
 import slideFirst from '../../assets/images/slideFirst.jpg';
 
 const MainWrapper = styled.div`

@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actionCreaors from '../../../store/actions/index';
 import { Search } from '@styled-icons/boxicons-regular/Search'
 import { HeartFill } from '@styled-icons/bootstrap/HeartFill'
 import { Basket } from '@styled-icons/boxicons-regular/Basket';
 import { ShoppingBags } from '@styled-icons/boxicons-solid/ShoppingBags';
-import Icon from '../styled/NavigationIcons';
+import { CloseOutline } from '@styled-icons/evaicons-outline/CloseOutline';
+import Icon from '../../styled/NavigationIcons';
+import SearchBox from './SearchBox';
+
 
 const NavWrapper = styled.div`
     width: 100%;
@@ -70,7 +75,8 @@ const LinkItem = styled.div`
    
 `
 
-const IconWrapper = styled.div`
+const IconWrapper = styled.button`
+    border:0;
     width:45px;
     height:45px;
     background: transparent;
@@ -89,12 +95,22 @@ const IconWrapper = styled.div`
 const HomeHeader = props => {
     const [navbar, setNavbar] = useState(false)
 
+    const toggleStatus = useSelector(state => {
+        return state.toggle.searchToggleStatus;
+    })
+
+    const dispatch = useDispatch();
+    const onChangeToggleStatus = useCallback(status => dispatch(actionCreaors.toggleClass(status)), []);
+
+    // useEffect(() => {
+    // }, [])
+
 
     const changeBackground = () => {
         if (window.scrollY >= 75) {
             setNavbar(true);
         } else {
-            setNavbar(false)
+            setNavbar(false);
         }
     }
 
@@ -117,6 +133,15 @@ const HomeHeader = props => {
                 </LinkItem>
             </ElemWrapper>
             <ElemWrapper>
+                <SearchBox />
+                <Icon
+                    type="submit"
+                    iconName={CloseOutline} 
+                    changeColor={navbar} 
+                    rotate="true"
+                    onClick={onChangeToggleStatus(true)}/>
+            </ElemWrapper>
+            {/* <ElemWrapper >
                 <IconWrapper newHover={navbar}>
                     <Icon iconName={Search} changeColor={navbar} />
                 </IconWrapper>
@@ -126,7 +151,7 @@ const HomeHeader = props => {
                 <IconWrapper newHover={navbar}>
                     <Icon iconName={Basket} changeColor={navbar} />
                 </IconWrapper>
-            </ElemWrapper>
+            </ElemWrapper> */}
         </NavWrapper>
     );
 }
