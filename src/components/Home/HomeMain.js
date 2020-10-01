@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import HomeHeader from './Navigation/Header';
+import Header from './Navigation/Header';
 import slideFirst from '../../assets/images/slideFirst.jpg';
 
-const MainWrapper = styled.div`
+const DarknesWrapper = styled.div`
+    /* background-color: rgba(0,0,0,0.5); */
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 0;
+`
+
+const Wrapper = styled.div`
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     background-image: url(${props => props.img});
     background-size: cover;
+    /* opacity: 0.8; */
 `
 const Slider = styled.div`
     width: 100%;
@@ -23,20 +32,22 @@ const SlideText = styled.p`
 `
 
 class HomeMain extends Component {
-    render(){
-        return(
-            <MainWrapper img={slideFirst}>
-                <HomeHeader />
-                <Slider>
-                    <SlideText big>
-                        Discover the lifestyle
+    render() {
+        return (
+            <DarknesWrapper>
+                <Wrapper img={slideFirst}>
+                    <Header />
+                    <Slider>
+                        <SlideText big>
+                            Discover the lifestyle
                     </SlideText>
-                    <SlideText>
-                        Our Collection is<br />made of the best materials
+                        <SlideText>
+                            Our Collection is<br />made of the best materials
                     </SlideText>
-                    <button>SHOP NOW</button>
-                </Slider>
-            </MainWrapper>
+                        <button>SHOP NOW</button>
+                    </Slider>
+                </Wrapper>
+            </DarknesWrapper>
         );
     }
 }

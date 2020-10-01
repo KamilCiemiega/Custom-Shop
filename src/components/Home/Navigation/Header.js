@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actionCreaors from '../../../store/actions/index';
@@ -9,6 +9,7 @@ import { ShoppingBags } from '@styled-icons/boxicons-solid/ShoppingBags';
 import { CloseOutline } from '@styled-icons/evaicons-outline/CloseOutline';
 import Icon from '../../styled/NavigationIcons';
 import SearchBox from './SearchBox';
+import { motion } from 'framer-motion';
 
 
 const NavWrapper = styled.div`
@@ -34,7 +35,10 @@ const NavWrapper = styled.div`
         `}
     transition: all 0.5s;
 `
-const ElemWrapper = styled.div`
+const ElemWrapper = styled(motion.div).attrs(() => ({
+    initial: 'closed',
+    searchVariants
+}))`
     width: ${props => props.title ? '400px' : '250px'};
     height: 100%;
     display: flex;
@@ -50,9 +54,9 @@ const LinkItem = styled.div`
     align-items:center;
     cursor: pointer;
     color: rgba(0, 0, 0, 1);
-    font-family: ${ props => props.theme.fonts.mainFont};
+    font-family: ${props => props.theme.fonts.mainFont};
     font-weight: ${props => props.bold && 'bold'};
-    font-size: ${ props => props.size && '1.5rem'};
+    font-size: ${props => props.size && '1.5rem'};
     color: ${props => props.navbar && 'rgba(255,255,255,1)'};
     &:hover{
         color:rgba(255,255,255,0.4);
@@ -64,7 +68,7 @@ const LinkItem = styled.div`
                 color: rgba(249, 203, 22, 0.6);
                 border-bottom: 2px solid rgba(249, 203, 22,1);
             `}
-            ${props => props.newHover &&
+        ${props => props.newHover &&
         css`
             color:rgba(255,255,255,0.4);
             transition: all 0.3s;
@@ -91,20 +95,44 @@ const IconWrapper = styled.button`
        background: ${props => props.newHover && 'transparent'};
     }
 `
+const Button = styled.button`
+    width:30px;
+    height:30px;
+    ${props => props.border &&
+        css`
+        border:none;
+        background:transparent;`
+    }
+`
+
+const searchVariants = {
+    closed: {
+        x: '100vh',
+        opacity: 0,
+        transition: {
+            type: 'spring'
+        }
+    },
+    open: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            type: 'spring'
+        }
+    },
+}
+
 
 const HomeHeader = props => {
     const [navbar, setNavbar] = useState(false)
+    const [isOpen, setIsOpen] = useState(true)
 
-    const toggleStatus = useSelector(state => {
+    const searchToggleStatus = useSelector(state => {
         return state.toggle.searchToggleStatus;
     })
 
     const dispatch = useDispatch();
-    const onChangeToggleStatus = useCallback(status => dispatch(actionCreaors.toggleClass(status)), []);
-
-    // useEffect(() => {
-    // }, [])
-
+    const onChangeToggleStatus = status => dispatch(actionCreaors.toggleClass(status));
 
     const changeBackground = () => {
         if (window.scrollY >= 75) {
@@ -113,10 +141,10 @@ const HomeHeader = props => {
             setNavbar(false);
         }
     }
-
-    window.addEventListener('scroll', changeBackground)
+    window.addEventListener('scroll', changeBackground);
 
     return (
+
         <NavWrapper navbar={navbar}>
             <ElemWrapper>
                 <LinkItem bottom navbar={navbar} newHover={navbar}>
@@ -128,30 +156,50 @@ const HomeHeader = props => {
             </ElemWrapper>
             <ElemWrapper title='true'>
                 <LinkItem bold size='true' navbar={navbar}>
-                    <Icon iconName={ShoppingBags} width='true' height='true' />
+                    <Icon
+                        iconName={ShoppingBags}
+                        width='true'
+                        height='true'
+                        changeColor={navbar} />
                     CustomShop
                 </LinkItem>
             </ElemWrapper>
             <ElemWrapper>
-                <SearchBox />
-                <Icon
-                    type="submit"
-                    iconName={CloseOutline} 
-                    changeColor={navbar} 
-                    rotate="true"
-                    onClick={onChangeToggleStatus(true)}/>
+                <ElemWrapper
+                    animate={isOpen ? "closed" : "open"}
+                    variants={searchVariants}>
+                    <SearchBox />
+                    <Button onClick={() => onChangeToggleStatus(false)}>
+                        <Icon iconName={CloseOutline} rotate="true" />
+                    </Button>
+                </ElemWrapper>
+                {searchToggleStatus && (
+                    <ElemWrapper >
+                        <IconWrapper newHover={navbar}>
+                            <Button
+                                onClick={() => setIsOpen(!isOpen)}
+                                border>
+                                <Icon
+                                    iconName={Search}
+                                    changeColor={navbar}
+                                    hover={navbar} />
+                            </Button>
+                        </IconWrapper>
+                        <IconWrapper newHover={navbar}>
+                            <Icon
+                                iconName={HeartFill}
+                                changeColor={navbar}
+                                hover={navbar} />
+                        </IconWrapper>
+                        <IconWrapper newHover={navbar}>
+                            <Icon
+                                iconName={Basket}
+                                changeColor={navbar}
+                                hover={navbar} />
+                        </IconWrapper>
+                    </ElemWrapper>
+                )}
             </ElemWrapper>
-            {/* <ElemWrapper >
-                <IconWrapper newHover={navbar}>
-                    <Icon iconName={Search} changeColor={navbar} />
-                </IconWrapper>
-                <IconWrapper newHover={navbar}>
-                    <Icon iconName={HeartFill} changeColor={navbar} />
-                </IconWrapper>
-                <IconWrapper newHover={navbar}>
-                    <Icon iconName={Basket} changeColor={navbar} />
-                </IconWrapper>
-            </ElemWrapper> */}
         </NavWrapper>
     );
 }

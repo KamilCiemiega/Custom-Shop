@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actionCreaors from '../../../store/actions/index';
-import styled, { css } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 
 const Form = styled.form`
     display: flex;
     align-items: center;
     justify-content:center;
     justify-content:${props => props.space ? 'space-between' : ''};
-    cursor:${props => props.cursor ? props.cursor : ''};
     flex-wrap: wrap;
     width: 90%;
 `
@@ -21,16 +18,11 @@ const Input = styled.input`
     color: #333;
     width: 90%;
 `
-const Button = styled.button`
-    border:none;
-    background:white;
-`
 
 const SearchBox = props => {
-    
 
     return(
-        <Form>
+        <Form onSubmit={onclick}>
             <Input
                 placeholder="Search for" >
             </Input>
