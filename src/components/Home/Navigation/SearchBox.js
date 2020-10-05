@@ -20,7 +20,6 @@ const Input = styled.input`
 `
 
 const SearchBox = props => {
-
     return(
         <Form onSubmit={onclick}>
             <Input

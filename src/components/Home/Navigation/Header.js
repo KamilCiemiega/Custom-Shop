@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actionCreaors from '../../../store/actions/index';
 import { Search } from '@styled-icons/boxicons-regular/Search'
 import { HeartFill } from '@styled-icons/bootstrap/HeartFill'
 import { Basket } from '@styled-icons/boxicons-regular/Basket';
@@ -15,14 +13,15 @@ import { motion } from 'framer-motion';
 const NavWrapper = styled.div`
     width: 100%;
     height:75px;
-    background: rgba(228, 228, 228, 0.3);
+    background: rgba(255, 255, 255, 0.3);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    position: sticky;
+    position:sticky;
     top:0;
     z-index:999;
     box-shadow:2px 2px 3px 3px rgba(0,0,0,0.2);
+    transition: all 0.5s;
     background: ${props => props.navbar && 'rgba(0,0,0,1)'};
     ${props =>
         props.navbar &&
@@ -33,7 +32,6 @@ const NavWrapper = styled.div`
             color: white;
             transition: all 0.5s;
         `}
-    transition: all 0.5s;
 `
 const ElemWrapper = styled(motion.div).attrs(() => ({
     initial: 'closed',
@@ -45,6 +43,7 @@ const ElemWrapper = styled(motion.div).attrs(() => ({
     align-items:center;
     flex-direction:row;
     justify-content: space-evenly;
+    position: relative;
 `
 
 const LinkItem = styled.div`
@@ -59,7 +58,6 @@ const LinkItem = styled.div`
     font-size: ${props => props.size && '1.5rem'};
     color: ${props => props.navbar && 'rgba(255,255,255,1)'};
     &:hover{
-        color:rgba(255,255,255,0.4);
         transition: all 0.3s;
         ${props =>
         props.bottom &&
@@ -107,7 +105,7 @@ const Button = styled.button`
 
 const searchVariants = {
     closed: {
-        x: '100vh',
+        x: '-30vh',
         opacity: 0,
         transition: {
             type: 'spring'
@@ -117,7 +115,8 @@ const searchVariants = {
         x: 0,
         opacity: 1,
         transition: {
-            type: 'spring'
+            type: 'spring',
+            stiffness: 60
         }
     },
 }
@@ -125,14 +124,10 @@ const searchVariants = {
 
 const HomeHeader = props => {
     const [navbar, setNavbar] = useState(false)
-    const [isOpen, setIsOpen] = useState(true)
-
-    const searchToggleStatus = useSelector(state => {
-        return state.toggle.searchToggleStatus;
+    const [isOpen, setIsOpen] = useState({
+        searchBox:true,
+        basket:true
     })
-
-    const dispatch = useDispatch();
-    const onChangeToggleStatus = status => dispatch(actionCreaors.toggleClass(status));
 
     const changeBackground = () => {
         if (window.scrollY >= 75) {
@@ -144,7 +139,6 @@ const HomeHeader = props => {
     window.addEventListener('scroll', changeBackground);
 
     return (
-
         <NavWrapper navbar={navbar}>
             <ElemWrapper>
                 <LinkItem bottom navbar={navbar} newHover={navbar}>
@@ -159,25 +153,31 @@ const HomeHeader = props => {
                     <Icon
                         iconName={ShoppingBags}
                         width='true'
-                        height='true'
-                        changeColor={navbar} />
+                        height='true'/>
                     CustomShop
                 </LinkItem>
             </ElemWrapper>
+            {/* <BasketCart /> */}
             <ElemWrapper>
                 <ElemWrapper
-                    animate={isOpen ? "closed" : "open"}
+                    animate={isOpen.searchBox ? "closed" : "open"}
                     variants={searchVariants}>
                     <SearchBox />
-                    <Button onClick={() => onChangeToggleStatus(false)}>
+                    <Button onClick={() => setIsOpen({...isOpen,searchBox:!isOpen.searchBox})}>
                         <Icon iconName={CloseOutline} rotate="true" />
                     </Button>
                 </ElemWrapper>
-                {searchToggleStatus && (
-                    <ElemWrapper >
+                {/* <ElemWrapper
+                    animate={isOpen.basket ? "closed" : "open"}
+                    variants={searchVariants}>
+                    <BasketCart />
+                </ElemWrapper> */}
+                
+                {isOpen.searchBox && (
+                    <ElemWrapper>
                         <IconWrapper newHover={navbar}>
                             <Button
-                                onClick={() => setIsOpen(!isOpen)}
+                                onClick={() => setIsOpen({...isOpen,searchBox:!isOpen})}
                                 border>
                                 <Icon
                                     iconName={Search}
@@ -192,10 +192,13 @@ const HomeHeader = props => {
                                 hover={navbar} />
                         </IconWrapper>
                         <IconWrapper newHover={navbar}>
+                            <Button onClick={() => setIsOpen({...isOpen,basket:!isOpen})} 
+                            border>
                             <Icon
                                 iconName={Basket}
                                 changeColor={navbar}
                                 hover={navbar} />
+                            </Button>
                         </IconWrapper>
                     </ElemWrapper>
                 )}

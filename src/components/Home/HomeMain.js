@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Header from './Navigation/Header';
 import slideFirst from '../../assets/images/slideFirst.jpg';
+import Basket from './Navigation/Basket';
 
 const DarknesWrapper = styled.div`
-    /* background-color: rgba(0,0,0,0.5); */
+    background-color: rgba(0,0,0,0.35);
     width: 100%;
     height: 100vh;
-    position: relative;
-    z-index: 0;
 `
 
 const Wrapper = styled.div`
@@ -18,7 +17,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     background-image: url(${props => props.img});
     background-size: cover;
-    /* opacity: 0.8; */
 `
 const Slider = styled.div`
     width: 100%;
@@ -34,20 +32,21 @@ const SlideText = styled.p`
 class HomeMain extends Component {
     render() {
         return (
+        <Wrapper img={slideFirst}>
             <DarknesWrapper>
-                <Wrapper img={slideFirst}>
-                    <Header />
-                    <Slider>
-                        <SlideText big>
+                <Header />
+                <Basket />
+                <Slider>
+                    <SlideText big>
                             Discover the lifestyle
                     </SlideText>
-                        <SlideText>
-                            Our Collection is<br />made of the best materials
+                    <SlideText>
+                        Our Collection is<br />made of the best materials
                     </SlideText>
                         <button>SHOP NOW</button>
-                    </Slider>
-                </Wrapper>
+                </Slider>
             </DarknesWrapper>
+        </Wrapper>
         );
     }
 }

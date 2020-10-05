@@ -9,6 +9,7 @@ const NavigationIcons = ({ iconName, changeColor,hover, rotate}) => {
         width: ${props => props.width ? '40px' : '25x'};
         height: ${props => props.height ? '40px' : '25px'};
         color: ${props => props.changeColor && 'rgba(255,255,255,1)'};
+        transition: 0.3 all;
         &:hover{
             ${props => props.hover && 
             css`
@@ -22,7 +23,6 @@ const NavigationIcons = ({ iconName, changeColor,hover, rotate}) => {
                 color:rgba(249, 203, 22,1);
             `}
         }
-        transition: 0.3 all;
     `
     return <StyledIcon 
                 icon={iconName} 
