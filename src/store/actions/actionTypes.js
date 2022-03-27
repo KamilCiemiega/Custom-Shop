@@ -1,1 +1,0 @@
-export const TOGGLE_CLASS = "TOGGLE_CLASS";
