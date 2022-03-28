@@ -5,19 +5,22 @@ import Basket from './components/Basket';
 import { ThemeProvider } from 'styled-components'
 import { theme } from './Theme/Theme.style';
 import BasketContextProvider from './store/basket-context';
-import { BasketContext } from './store/basket-context';
+import { useBasketContext } from './store/basket-context';
 import Slider from './components/Slider';
 
-
 const App: React.FC = () => {
-  const basketCtx = useContext(BasketContext);
+  const basketCtx = useBasketContext();
+  console.log("ctx in app",basketCtx)
   return (
     <BasketContextProvider>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Navigation />
+      <Navigation/>
       <Slider />
-      {/* <Basket /> */}
+      {basketCtx.show ?
+      <Basket /> 
+      :null
+      }
     </ThemeProvider>
     </BasketContextProvider>
   );

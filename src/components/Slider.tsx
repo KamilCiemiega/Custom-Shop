@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { css } from "@emotion/react";
 import ClipLoader from 'react-spinners/ClipLoader';
+import { Wrapper } from '../styles/Slider.style';
 
 interface Props {
     id: string;
@@ -77,14 +78,16 @@ const moveDot = (index:number) => {
 }
 
   return (
-    <div>
+    <Wrapper>
         <ClipLoader color="#fcbe24" loading={loading} css={override} size={150}/>
-        {data.forEach((elem) => {
+        {data.map((elem, index) => {
             return(
-                console.log(elem)
-            )
+                <Wrapper></Wrapper>
+            );
+            
+            
         })}
-    </div>
+    </Wrapper>
   );
 };
 

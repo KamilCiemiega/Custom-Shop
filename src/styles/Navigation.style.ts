@@ -6,14 +6,14 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsFillBasket2Fill } from "react-icons/bs";
 
 type Props = {
-  theme: number;
+  theme: string;
 }
 
 export const Nav = styled.div<Props>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
   height: 100px;
   background-color: ${({theme}) => theme.colors.navigation}
@@ -64,11 +64,13 @@ export const NavRight = styled.div`
   height: 100%;
   justify-content: space-evenly;
   align-items: center;
+  margin-right:5%;
 `;
 export const NavLeft = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left:5%;
 `;
 
 export const Search = styled(BiSearchAlt2)`

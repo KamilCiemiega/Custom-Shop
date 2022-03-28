@@ -1,8 +1,7 @@
 import React from 'react';
 import { Wrapper, Right, RightTop, Close, After, Button } from '../styles/Basket.style';
 
-
-const Basket: React.FC = () => {
+const Basket = () => {
   return (
     <Wrapper>
      <Right>

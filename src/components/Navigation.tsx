@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Nav, Logo, PenCil, NavPrint, NavProduct, NavLogo, NavRight, NavLeft,Search,Basket, Heart } from '../styles/Navigation.style';
 import { FaTshirt } from "react-icons/fa";
 import { BasketContext } from '../store/basket-context';
 
-const Navigation: React.FC = () => {
+const Navigation = () => {
     const [navbar, setNavbar] = useState(false)
     const basketCtx = useContext(BasketContext);
 
@@ -14,7 +14,14 @@ const Navigation: React.FC = () => {
             setNavbar(false);
         }
     }
-    window.addEventListener('scroll', stickyNav);
+
+    useEffect(() => {
+      window.addEventListener('scroll', stickyNav);
+      return () => {
+        window.removeEventListener('scroll', stickyNav)
+      }
+    }, [])
+    
     
   return (
     <Nav>
