@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from './Theme/Theme.style';
 import BasketContextProvider from './store/basket-context';
 import { BasketContext } from './store/basket-context';
+import Slider from './components/Slider';
 
 
 const App: React.FC = () => {
@@ -15,7 +16,8 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Navigation />
-      <Basket />
+      <Slider />
+      {/* <Basket /> */}
     </ThemeProvider>
     </BasketContextProvider>
   );
