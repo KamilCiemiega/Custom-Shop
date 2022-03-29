@@ -51,27 +51,23 @@ const Slider = () => {
     }
     
 
-    useEffect(()=> {
+    // useEffect(()=> {
+    //     fetchDataHandler()
+    //     const timer = setTimeout(() => {
+    //         if(slideIndex !== data.length){
+    //             setSlideIdnex(slideIndex + 1)
+    //         } 
+    //         else if (slideIndex === data.length){
+    //             setSlideIdnex(1)
+    //         }
+    //     }, 5000);
+    // return () => clearTimeout(timer);      
+    // }, [slideIndex])
+
+    useEffect(() => {
         fetchDataHandler()
     }, [])
-
-const nextSlide = () => {
-    if(slideIndex !== data.length){
-        setSlideIdnex(slideIndex + 1)
-    } 
-    else if (slideIndex === data.length){
-        setSlideIdnex(1)
-    }
-}
-
-const prevSlide = () => {
-    if(slideIndex !== 1){
-        setSlideIdnex(slideIndex - 1)
-    }
-    else if (slideIndex === 1){
-        setSlideIdnex(data.length)
-    }
-}
+    
 
 const moveDot = (index:number) => {
     setSlideIdnex(index)
@@ -90,13 +86,13 @@ const moveDot = (index:number) => {
             );
         })}
         <div className={classes.containerDots}>
-                {Array.from({length: 5}).map((item, index) => (
+                {Array.from({length: 4}).map((item, index) => (
                     <div 
                     onClick={() => moveDot(index + 1)}
                     className={slideIndex === index + 1 ? classes.dotActive : classes.dot}
                     ></div>
                 ))}
-            </div>
+        </div>
     </div>
   );
 };

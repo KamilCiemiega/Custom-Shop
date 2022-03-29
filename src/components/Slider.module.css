@@ -8,17 +8,16 @@ img {
 }
 .slide {
   opacity: 0;
-  transition-duration: 1s ease;
+  transition-duration: 1.5s ease;
 }
 
 .active {
   opacity: 1;
-  transition-duration: 1s;
-  transform: scale(1.08);
+  transition-duration: 1.5s;
 }
 .containerDots {
   position: absolute;
-  bottom: 10px;
+  bottom: 49%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -29,13 +28,13 @@ img {
   border-radius: 50%;
   border: 3px solid #f1f1f1;
   margin: 0 5px;
-  background: #f1f1f1;
+  background: #000000;
 }
 .dotActive {
-  background: rgb(32, 32, 32);
+  background: rgb(109, 109, 109);
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 3px solid #f1f1f1;
+  border: 3px solid #949494;
   margin: 0 5px;
 }

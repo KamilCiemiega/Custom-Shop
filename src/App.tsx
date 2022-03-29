@@ -4,6 +4,7 @@ import Basket from './components/Basket';
 import BasketContextProvider from './store/basket-context';
 import { useBasketContext } from './store/basket-context';
 import Slider from './components/Slider';
+import BestSell from './components/BestSell';
 
 const App: React.FC = () => {
   const basketCtx = useBasketContext();
@@ -13,6 +14,7 @@ const App: React.FC = () => {
       <Navigation/>
       <Slider />
       {/* <Basket />  */}
+      <BestSell />
     </BasketContextProvider>
   );
 };
