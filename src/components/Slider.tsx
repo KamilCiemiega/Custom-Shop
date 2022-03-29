@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { css } from "@emotion/react";
 import ClipLoader from 'react-spinners/ClipLoader';
-import { Wrapper } from '../styles/Slider.style';
+import classes from './Slider.module.css';
 
-interface Props {
+interface DataType {
     id: string;
     image: string;
 }
@@ -16,12 +16,12 @@ top:50%;
 margin: 0 auto;
 `;
 
-const Slider: React.FC = () => {
+const Slider = () => {
 
-    const [data, setData] = useState<Props[]>([]);
+    const [data, setData] = useState<DataType[]>([]);
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
-    const [slideIndex, setSlideIdnex] = useState<number>(1)
+    const [slideIndex, setSlideIdnex] = useState<number>(0)
 
 
     const fetchDataHandler = async () => {
@@ -78,16 +78,26 @@ const moveDot = (index:number) => {
 }
 
   return (
-    <Wrapper>
+    <div className={classes.wrapper}>
         <ClipLoader color="#fcbe24" loading={loading} css={override} size={150}/>
         {data.map((elem, index) => {
             return(
-                <Wrapper></Wrapper>
+                <div className={index === slideIndex ? classes.active : classes.slide}>
+                    {index === slideIndex && (
+                        <img src={elem.image} alt='image'/>
+                    )}
+                </div>
             );
-            
-            
         })}
-    </Wrapper>
+        <div className={classes.containerDots}>
+                {Array.from({length: 5}).map((item, index) => (
+                    <div 
+                    onClick={() => moveDot(index + 1)}
+                    className={slideIndex === index + 1 ? classes.dotActive : classes.dot}
+                    ></div>
+                ))}
+            </div>
+    </div>
   );
 };
 
