@@ -17,24 +17,23 @@ img {
 }
 .containerDots {
   position: absolute;
-  bottom: 49%;
+  bottom: 47%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
 }
 .dot {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  border: 3px solid #f1f1f1;
   margin: 0 5px;
   background: #000000;
+  cursor: pointer;
 }
 .dotActive {
   background: rgb(109, 109, 109);
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  border: 3px solid #949494;
   margin: 0 5px;
 }

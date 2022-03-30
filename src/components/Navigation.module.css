@@ -36,6 +36,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 6%;
 }
 .navLogo h1 {
   margin-left: 20px;
