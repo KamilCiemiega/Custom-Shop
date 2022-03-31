@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
 import Navigation from './components/Navigation';
 import Basket from './components/Basket';
-import BasketContextProvider from './store/basket-context';
 import { useBasketContext } from './store/basket-context';
 import Slider from './components/Slider';
 import BestSell from './components/BestSell';
+import { ContactForm } from './components/ContactForm';
 
 const App: React.FC = () => {
   const basketCtx = useBasketContext();
 
   return (
-    <BasketContextProvider>
+    <>
       <Navigation/>
       <Slider />
-      {/* <Basket />  */}
+      {basketCtx.show && <Basket />}
       <BestSell />
-    </BasketContextProvider>
+      <ContactForm />
+    </>
   );
 };
 
