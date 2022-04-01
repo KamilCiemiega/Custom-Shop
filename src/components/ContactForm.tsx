@@ -2,7 +2,8 @@ import React from "react"
 import classes from './ContactForm.module.css';
 import { GoLocation } from "react-icons/go";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { AiOutlineMail } from "react-icons/ai";
+import { AiOutlineMail } from "react-icons/ai"
+import { TiStar } from "react-icons/ti";
 
 export const ContactForm = () => {
     return(
@@ -12,15 +13,18 @@ export const ContactForm = () => {
                 <div className={classes.flexName}>
                     <label>FIRST NAME</label>
                     <input className={classes.customerName} type="text" required/>
+                    <TiStar className={classes.nameStart}/>
                 </div>
                 <div className={classes.flexLastName}>
                 <label>LAST NAME</label>
                 <input type="text" className={classes.customerName} required></input>
+                <TiStar className={classes.lastNameStart}/>
                 </div>
                 </div>
                 <div className={classes.flexEmail}>
                 <label>EMAIL</label>
                 <input type="email" className={classes.email} required></input>
+                <TiStar className={classes.emailStar}/>
                 </div>
                 <div className={classes.flexText}>
                     <label>MESSAGE</label>

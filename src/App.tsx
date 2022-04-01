@@ -5,6 +5,8 @@ import { useBasketContext } from './store/basket-context';
 import Slider from './components/Slider';
 import BestSell from './components/BestSell';
 import { ContactForm } from './components/ContactForm';
+import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/scrollToTop';
 
 const App: React.FC = () => {
   const basketCtx = useBasketContext();
@@ -16,6 +18,8 @@ const App: React.FC = () => {
       {basketCtx.show && <Basket />}
       <BestSell />
       <ContactForm />
+      <Footer />
+      <ScrollToTop />
     </>
   );
 };

@@ -1,0 +1,97 @@
+.wrapper{
+    width: 100%;
+    height: 380px;
+    background-color: rgb(17, 17, 17);
+    display: flex;
+    flex-direction: column;
+}
+.wrapperElements{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.aboutUs p {
+    color: white;
+    font-weight: bold;
+    font-size: 30px; 
+}
+.aboutUs {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+ul {
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+}
+li {
+    color: #7a7a7a;
+    padding: 10px 0px;
+}
+li:hover {
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.ourServices p {
+    color: white;
+    font-weight: bold;
+    font-size: 30px; 
+}
+.ourServices {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.information p {
+    color: white;
+    font-weight: bold;
+    font-size: 30px; 
+}
+.information {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.socialMedia{
+    display: flex;
+    margin-top: 29px;
+}
+.styleSocial{
+    width: 40px;
+    height: 40px;
+    background-color: #7a7a7a;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+.styleSocial:hover {
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.wrappedEnd{
+    display: flex;
+    flex-direction: column;
+}
+.wrappedEnd span {
+    width: 90%;
+    height: 1px;
+    background-color: #7a7a7a;
+    margin-left: 5%;
+    margin-top: 40px;
+}
+.wrappedEndElem{
+    display: flex;
+    align-items: center;
+}
+.wrappedEndElem p {
+    color: #7a7a7a;
+    margin-left: 5%;
+}
+.wrappedEndElemLast{
+    display: flex;
+}
