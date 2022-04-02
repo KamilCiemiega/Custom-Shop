@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Navigation from './components/Navigation';
 import Basket from './components/Basket';
 import { useBasketContext } from './store/basket-context';

@@ -43,7 +43,6 @@ const Slider = () => {
             }
             setData(loadedImages)
             setLoading(false);
-            console.log(loadedImages)
 
         }catch{
             

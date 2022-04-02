@@ -120,6 +120,16 @@
   background-color: #fcbe24;
   cursor: pointer;
 }
+.heartStyle {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease 0s;
+}
+.viewStyle{
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease 0s;
+}
 .addToCard {
   width: 80%;
   height: 45px;

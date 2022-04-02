@@ -4,9 +4,6 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlinePageview } from "react-icons/md"
 import { AiOutlineClose } from "react-icons/ai"
 
-const heartStyle = {width:'20px', height:'20px'};
-const viewStyle = {width:'20px', height:'20px'};
-const closeStyle = {position:'absolute', top:'0', right:'0'}
 
 const BestSell = () => {
 
@@ -39,10 +36,10 @@ const BestSell = () => {
                     <div>
                     <div className={classes.wrapperElementsItemWishBlock}>
                     <button className={classes.whishListButton}>
-                        <AiOutlineHeart style={heartStyle}/>
+                        <AiOutlineHeart className={classes.heartStyle}/>
                     </button>
                         <button className={classes.viewButton}>
-                        <MdOutlinePageview style={viewStyle} onClick={() => setShowModalDress(true)}/>
+                        <MdOutlinePageview className={classes.viewStyle} onClick={() => setShowModalDress(true)}/>
                     </button>
                     </div>
                     <button className={classes.addToCard}>Add To Card</button>
@@ -84,10 +81,10 @@ const BestSell = () => {
                     <div>
                     <div className={classes.wrapperElementsItemWishBlock}>
                     <button className={classes.whishListButton}>
-                        <AiOutlineHeart style={heartStyle}/>
+                        <AiOutlineHeart className={classes.heartStyle}/>
                     </button>
                         <button className={classes.viewButton}>
-                        <MdOutlinePageview style={viewStyle} onClick={() => setShowModaltshirt(true)}/>
+                        <MdOutlinePageview className={classes.viewStyle} onClick={() => setShowModaltshirt(true)}/>
                     </button>
                     </div>
                     <button className={classes.addToCard}>Add To Card</button>
@@ -125,10 +122,10 @@ const BestSell = () => {
                     <div>
                     <div className={classes.wrapperElementsItemWishBlock}>
                     <button className={classes.whishListButton}>
-                        <AiOutlineHeart style={heartStyle}/>
+                        <AiOutlineHeart className={classes.heartStyle}/>
                     </button>
                         <button className={classes.viewButton}>
-                        <MdOutlinePageview style={viewStyle} onClick={() => setShowModalFit(true)}/>
+                        <MdOutlinePageview className={classes.viewStyle} onClick={() => setShowModalFit(true)}/>
                     </button>
                     </div>
                     <button className={classes.addToCard}>Add To Card</button>
