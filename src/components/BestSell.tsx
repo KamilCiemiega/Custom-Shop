@@ -7,12 +7,12 @@ import { AiOutlineClose } from "react-icons/ai"
 
 const BestSell = () => {
 
-    const [showDress,setShowDress] = useState<boolean>(false);
-    const [showtshirt,setShowtshirt] = useState<boolean>(false);
-    const [showFit,setShowFit] = useState<boolean>(false);
-    const [showModalDress, setShowModalDress] = useState<boolean>(false);
-    const [showModaltshirt, setShowModaltshirt] = useState<boolean>(false);
-    const [showModalFit, setShowModalFit] = useState<boolean>(false);
+    const [showDress,setShowDress] = useState(false);
+    const [showtshirt,setShowtshirt] = useState(false);
+    const [showFit,setShowFit] = useState(false);
+    const [showModalDress, setShowModalDress] = useState(false);
+    const [showModaltshirt, setShowModaltshirt] = useState(false);
+    const [showModalFit, setShowModalFit] = useState(false);
 
     return(
         <div className={classes.wrapper}>

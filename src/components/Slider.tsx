@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { css } from "@emotion/react";
 import ClipLoader from 'react-spinners/ClipLoader';
 import classes from './Slider.module.css';
+//import {motion} from 'framer-motion'
 
 interface DataType {
     id: string;
@@ -26,7 +27,7 @@ const Slider = () => {
 
     const fetchDataHandler = async () => {
         try{
-            const response = await fetch('https://custom-shop-6228c-default-rtdb.europe-west1.firebasedatabase.app/images.json');
+            const response = await fetch(`${process.env.REACT_APP_STORAGE_LINK}`);
             const responseData = await response.json();
 
             if (!response.ok) {
@@ -44,28 +45,29 @@ const Slider = () => {
             setData(loadedImages)
             setLoading(false);
 
-        }catch{
-            
+        }catch(e:unknown){
+                setError(e as string)
         }
     }
     
-
-    // useEffect(()=> {
-    //     fetchDataHandler()
-    //     const timer = setTimeout(() => {
-    //         if(slideIndex !== data.length){
-    //             setSlideIdnex(slideIndex + 1)
-    //         } 
-    //         else if (slideIndex === data.length){
-    //             setSlideIdnex(1)
-    //         }
-    //     }, 5000);
-    // return () => clearTimeout(timer);      
-    // }, [slideIndex])
-
     useEffect(() => {
         fetchDataHandler()
     }, [])
+    
+
+    useEffect(()=> {
+        const timer = setTimeout(() => {
+            if(slideIndex !== data.length){
+                setSlideIdnex(slideIndex + 1)
+            } 
+            else if (slideIndex === data.length){
+                setSlideIdnex(1)
+            }
+        }, 5000);
+    return () => clearTimeout(timer);
+    }, [slideIndex])
+
+    
     
 
 const moveDot = (index:number) => {
@@ -77,7 +79,7 @@ const moveDot = (index:number) => {
         <ClipLoader color="#fcbe24" loading={loading} css={override} size={150}/>
         {data.map((elem, index) => {
             return(
-                <div className={index === slideIndex ? classes.active : classes.slide}>
+                <div key={elem.id} className={index === slideIndex ? classes.active : classes.slide}>
                     {index === slideIndex && (
                         <img src={elem.image} alt='image'/>
                     )}
@@ -85,10 +87,10 @@ const moveDot = (index:number) => {
             );
         })}
         <div className={classes.containerDots}>
-                {Array.from({length: 4}).map((item, index) => (
+                {[1,2,3,4].map((item, index) => (
                     <div 
-                    onClick={() => moveDot(index + 1)}
-                    className={slideIndex === index + 1 ? classes.dotActive : classes.dot}
+                    onClick={() => moveDot(index)}
+                    className={slideIndex === index ? classes.dotActive : classes.dot}
                     ></div>
                 ))}
         </div>
