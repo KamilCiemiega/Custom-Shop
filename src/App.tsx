@@ -1,11 +1,11 @@
 import React from 'react';
-import Navigation from './components/Navigation';
-import Basket from './components/Basket';
+import Navigation from './components/Navigation/Navigation';
+import Basket from './components/Basket/Basket';
 import { useBasketContext } from './store/basket-context';
-import Slider from './components/Slider';
-import BestSell from './components/BestSell';
-import { ContactForm } from './components/ContactForm';
-import { Footer } from './components/Footer';
+import Slider from './components/Slider/Slider';
+import BestSell from './components/BestSell/BestSell';
+import { ContactForm } from './components/ContactForm/ContactForm';
+import { Footer } from './components/Footer/Footer';
 import { ScrollToTop } from './components/scrollToTop';
 
 const App: React.FC = () => {

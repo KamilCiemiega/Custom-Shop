@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { FaTshirt } from "react-icons/fa";
 import { BsFillPencilFill } from "react-icons/bs";
 import { AiFillShopping } from "react-icons/ai";
-import { BasketContext } from '../store/basket-context';
+import { BasketContext } from '../../store/basket-context';
 import { BiSearchAlt2 } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsFillBasket2Fill } from "react-icons/bs";

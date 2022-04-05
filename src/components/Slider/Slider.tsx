@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { css } from "@emotion/react";
 import ClipLoader from 'react-spinners/ClipLoader';
 import classes from './Slider.module.css';
-//import {motion} from 'framer-motion'
 
 interface DataType {
     id: string;
@@ -20,14 +19,14 @@ margin: 0 auto;
 const Slider = () => {
 
     const [data, setData] = useState<DataType[]>([]);
-    const [error, setError] = useState<string>('');
-    const [loading, setLoading] = useState<boolean>(true);
-    const [slideIndex, setSlideIdnex] = useState<number>(0)
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [slideIndex, setSlideIdnex] = useState(0)
 
 
     const fetchDataHandler = async () => {
         try{
-            const response = await fetch(`${process.env.REACT_APP_STORAGE_LINK}`);
+            const response = await fetch('https://custom-shop-6228c-default-rtdb.europe-west1.firebasedatabase.app/images.json');
             const responseData = await response.json();
 
             if (!response.ok) {
@@ -42,11 +41,14 @@ const Slider = () => {
                     image: responseData[key].image
                 })
             }
+
+        
+
             setData(loadedImages)
             setLoading(false);
 
-        }catch(e:unknown){
-                setError(e as string)
+        }catch{
+                
         }
     }
     

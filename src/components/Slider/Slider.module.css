@@ -19,8 +19,8 @@ img {
 }
 .containerDots {
   position: absolute;
-  bottom: 10px;
-  left: 1200px;
+  bottom: 202px;
+  left: 800px;
   transform: translateX(-50%);
   display: flex;
 }

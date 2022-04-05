@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Basket.module.css';
 import { AiOutlineClose } from 'react-icons/ai';
-import { useBasketContext } from '../store/basket-context';
+import { useBasketContext } from '../../store/basket-context';
 
 
 const Basket = () => {
